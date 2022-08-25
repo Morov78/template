@@ -18,7 +18,7 @@ ApiService.getTrendingMovies().then(data => {
 
 async function renderMoviesList(data) {
   const genresList = await ApiService.getGenresList();
-  console.log(data, genresList);
+  // console.log(data, genresList);
   galleryEl.insertAdjacentHTML('beforeend', markupList(data, genresList));
 }
 

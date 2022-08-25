@@ -17,7 +17,7 @@ export class API {
     );
     return response.data.genres;
   };
-  getPaginationList = () => {
-    console.log(this.page);
-  };
+  // getPaginationList = () => {
+  //   console.log(this.page);
+  // };
 }

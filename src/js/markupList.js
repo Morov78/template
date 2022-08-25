@@ -1,5 +1,5 @@
 function markupList(data, genresList) {
-  console.log(data, genresList);
+  // console.log(data, genresList);
   return data
     .map(({ genre_ids, id, title, release_date, poster_path }) => {
       const genresMovie = genre_ids
