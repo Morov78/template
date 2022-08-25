@@ -7,10 +7,10 @@ const ApiService = new API();
 console.log(ApiService);
 const galleryEl = document.querySelector('.gallery__list');
 const buttonPageTop = document.querySelector('.page-up');
+const pagginationList = document.querySelector('.paggination-js');
 
 window.addEventListener('scroll', throttle(onScroll, 500));
 buttonPageTop.addEventListener('click', onClickButtonPageTop);
-pagginationList = document.querySelector('.paggination-js');
 
 ApiService.getTrendingMovies().then(data => {
   renderMoviesList(data);
