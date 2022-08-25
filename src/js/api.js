@@ -6,8 +6,7 @@ async function getTrendingMovies() {
   const response = await axios.get(
     `${BASE_URL}/trending/movie/week?api_key=${KEY}`
   );
-  const data = response.data.results;
-  return data;
+  return response.data.results;
 }
 async function getGenresList() {
   const response = await axios.get(
