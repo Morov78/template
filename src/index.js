@@ -1,5 +1,5 @@
-import { getTrendingMovies, getGenresList } from './api';
-import { markupList } from './markupList';
+import { getTrendingMovies, getGenresList } from './js/api';
+import { markupList } from './js/markupList';
 import { throttle } from 'lodash';
 
 galleryEl = document.querySelector('.gallery__list');
