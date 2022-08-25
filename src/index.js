@@ -14,6 +14,7 @@ getTrendingMovies().then(data => {
 
 async function renderMoviesList(data) {
   const genresList = await getGenresList();
+  console.log(data, genresList);
   galleryEl.insertAdjacentHTML('beforeend', markupList(data, genresList));
 }
 
