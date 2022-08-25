@@ -31,7 +31,7 @@ export class API {
       this.page + 1
     }" class="nextButton active" ${
       this.page === this.maxPages ? 'disabled' : ''
-    }">></button>`;
+    }>></button>`;
     const markupPaginationList = markupPagination(this.page, this.maxPages);
     const markupArray = markupPaginationList.map(item => {
       return `<button type="button" ${
@@ -42,12 +42,6 @@ export class API {
   };
   setPage = page => {
     this.page = page;
-  };
-  incrementPage = () => {
-    this.page += 1;
-  };
-  decrementPage = () => {
-    this.page -= 1;
   };
 }
 function markupPagination(currentPage, maxPages) {
@@ -102,7 +96,7 @@ function markupPagination(currentPage, maxPages) {
     return array;
   }
   if (currentPage < 3) {
-    return (array = [1, 2, 3, 4, 5, '...', maxPages]);
+    return [1, 2, 3, 4, 5, '...', maxPages];
   }
 }
 {
