@@ -76,7 +76,7 @@ function markupPagination(currentPage, maxPages) {
     return [1, '...', ...array];
   }
   if (currentPage >= 6) {
-    return (array = [
+    return [
       1,
       '...',
       currentPage - 2,
@@ -86,7 +86,7 @@ function markupPagination(currentPage, maxPages) {
       currentPage + 2,
       '...',
       maxPages,
-    ]);
+    ];
   }
   if (currentPage < 6 && currentPage >= 3) {
     const array = [
