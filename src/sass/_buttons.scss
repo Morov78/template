@@ -1,0 +1,10 @@
+.noactive {
+  pointer-events: none;
+  background-color: gold;
+}
+.active {
+  cursor: pointer;
+}
+button:disabled {
+  pointer-events: none;
+}
