@@ -18,7 +18,7 @@ fetchData();
 
 function fetchData() {
   apiService.getTrendingMovies().then(data => {
-    console.log('page=', apiService.page, '  maxPages=', apiService.maxPages);
+    // console.log('page=', apiService.page, '  maxPages=', apiService.maxPages);
     refs.galleryList.innerHTML = '';
     renderMoviesList(data);
     refs.pagginationList.innerHTML = '';
@@ -39,7 +39,11 @@ async function renderMoviesList(data) {
 }
 
 function onClickPagginationList(event) {
-  apiService.setPage(Number(event.target.dataset.page));
+  const currentPage = event.target.dataset.page;
+  if (!currentPage) {
+    return;
+  }
+  apiService.setPage(Number(currentPage));
   fetchData();
 }
 
