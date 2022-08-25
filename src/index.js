@@ -2,8 +2,8 @@ import { getTrendingMovies, getGenresList } from './js/api';
 import { markupList } from './js/markupList';
 import { throttle } from 'lodash';
 
-galleryEl = document.querySelector('.gallery__list');
-buttonPageTop = document.querySelector('.page-up');
+const galleryEl = document.querySelector('.gallery__list');
+const buttonPageTop = document.querySelector('.page-up');
 
 window.addEventListener('scroll', throttle(onScroll, 500));
 buttonPageTop.addEventListener('click', onClickButtonPageTop);
