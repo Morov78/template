@@ -1,19 +1,23 @@
 import { getTrendingMovies, getGenresList } from './js/api';
+import { API } from './js/api';
 import { markupList } from './js/markupList';
 import { throttle } from 'lodash';
-
+console.log(API);
+const ApiService = new API();
+console.log(ApiService);
 const galleryEl = document.querySelector('.gallery__list');
 const buttonPageTop = document.querySelector('.page-up');
 
 window.addEventListener('scroll', throttle(onScroll, 500));
 buttonPageTop.addEventListener('click', onClickButtonPageTop);
+pagginationList = document.querySelector('.paggination-js');
 
-getTrendingMovies().then(data => {
+ApiService.getTrendingMovies().then(data => {
   renderMoviesList(data);
 });
 
 async function renderMoviesList(data) {
-  const genresList = await getGenresList();
+  const genresList = await ApiService.getGenresList();
   console.log(data, genresList);
   galleryEl.insertAdjacentHTML('beforeend', markupList(data, genresList));
 }
