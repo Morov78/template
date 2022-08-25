@@ -1,7 +1,7 @@
 function markupList(data, genresList) {
   console.log(data, genresList);
   debugger;
-  return (makeData = data
+  return data
     .map(({ genre_ids, id, title, release_date, poster_path }) => {
       const genresMovie = genre_ids
         .map(genreId => genresList.find(({ id }) => id === genreId))
@@ -21,6 +21,6 @@ function markupList(data, genresList) {
         </div>
       </li>`;
     })
-    .join(' '));
+    .join(' ');
 }
 export { markupList };
