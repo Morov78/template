@@ -2,24 +2,45 @@ import { getTrendingMovies, getGenresList } from './js/api';
 import { API } from './js/api';
 import { markupList } from './js/markupList';
 import { throttle } from 'lodash';
-console.log(API);
-const ApiService = new API();
-console.log(ApiService);
-const galleryEl = document.querySelector('.gallery__list');
-const buttonPageTop = document.querySelector('.page-up');
-const pagginationList = document.querySelector('.paggination-js');
+
+const apiService = new API();
+const refs = {
+  galleryList: document.querySelector('.gallery__list'),
+  buttonPageTop: document.querySelector('.page-up'),
+  pagginationList: document.querySelector('.paggination-js'),
+};
 
 window.addEventListener('scroll', throttle(onScroll, 500));
-buttonPageTop.addEventListener('click', onClickButtonPageTop);
+refs.buttonPageTop.addEventListener('click', onClickButtonPageTop);
+refs.pagginationList.addEventListener('click', onClickPagginationList);
 
-ApiService.getTrendingMovies().then(data => {
-  renderMoviesList(data);
-});
+fetchData();
+
+function fetchData() {
+  apiService.getTrendingMovies().then(data => {
+    console.log('page=', apiService.page, '  maxPages=', apiService.maxPages);
+    refs.galleryList.innerHTML = '';
+    renderMoviesList(data);
+    refs.pagginationList.innerHTML = '';
+  });
+}
 
 async function renderMoviesList(data) {
-  const genresList = await ApiService.getGenresList();
+  const genresList = await apiService.getGenresList();
   // console.log(data, genresList);
-  galleryEl.insertAdjacentHTML('beforeend', markupList(data, genresList));
+  refs.galleryList.insertAdjacentHTML(
+    'beforeend',
+    markupList(data, genresList)
+  );
+  refs.pagginationList.insertAdjacentHTML(
+    'beforeend',
+    apiService.renderPaginationList()
+  );
+}
+
+function onClickPagginationList(event) {
+  apiService.setPage(Number(event.target.dataset.page));
+  fetchData();
 }
 
 function onClickButtonPageTop() {
@@ -31,13 +52,13 @@ function onClickButtonPageTop() {
 
 function onScroll() {
   // console.log("scroll");
-  const isHidden = buttonPageTop.classList.contains('is-hidden');
+  const isHidden = refs.buttonPageTop.classList.contains('is-hidden');
   const isVisible = window.scrollY >= window.innerHeight * 3;
   // console.log(isHidden,isVisible);
   if (isVisible & isHidden) {
-    buttonPageTop.classList.remove('is-hidden');
+    refs.buttonPageTop.classList.remove('is-hidden');
   }
   if (!isVisible & !isHidden) {
-    buttonPageTop.classList.add('is-hidden');
+    refs.buttonPageTop.classList.add('is-hidden');
   }
 }
