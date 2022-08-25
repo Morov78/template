@@ -53,7 +53,7 @@ export class API {
 function markupPagination(currentPage, maxPages) {
   console.log(currentPage);
   if (currentPage > maxPages - 2) {
-    return (array = [
+    return [
       1,
       '...',
       maxPages - 4,
@@ -61,7 +61,7 @@ function markupPagination(currentPage, maxPages) {
       maxPages - 2,
       maxPages - 1,
       maxPages,
-    ]);
+    ];
   }
   if (currentPage >= maxPages - 4) {
     const array = [
