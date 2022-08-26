@@ -58,11 +58,12 @@ function markupButtons(page, maxPages) {
 function markupPaginationList(page, maxPages) {
   const markupButtonsList = markupButtons(page, maxPages)
     .map(item => {
+      console.log(item);
       return `<button type="button" class="pagination__button ${
         page === item ? 'current' : ''
-      }"
-
-    data-page="${item}">${item}</button>`;
+      } ${
+        item === '...' ? 'no-active' : ''
+      }" data-page="${item}">${item}</button>`;
     })
     .join(' ');
   return (
