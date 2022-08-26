@@ -1,13 +1,13 @@
-import { getTrendingMovies, getGenresList } from './js/api';
 import { API } from './js/api';
 import { markupList } from './js/markupList';
 import { throttle } from 'lodash';
+import { markupPaginationList } from './js/markupPaginationList';
 
 const apiService = new API();
 const refs = {
-  galleryList: document.querySelector('.gallery__list'),
+  galleryList: document.querySelector('.gallery-js'),
   buttonPageTop: document.querySelector('.page-up'),
-  pagginationList: document.querySelector('.paggination-js'),
+  pagginationList: document.querySelector('.pagination-js'),
 };
 
 window.addEventListener('scroll', throttle(onScroll, 500));
@@ -34,7 +34,7 @@ async function renderMoviesList(data) {
   );
   refs.pagginationList.insertAdjacentHTML(
     'beforeend',
-    apiService.renderPaginationList()
+    markupPaginationList(apiService.page, apiService.maxPages)
   );
 }
 
